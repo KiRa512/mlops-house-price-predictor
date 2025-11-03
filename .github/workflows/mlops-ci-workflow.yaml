@@ -42,7 +42,7 @@ jobs:
            --config configs/model_config.yaml \
            --data data/processed/featured_house_data.csv \
            --models-dir models/trained \
-           --mlflow-tracking-uri http://localhost:5555
+           --mlflow-tracking-uri http://localhost:5000
 
 
 
