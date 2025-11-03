@@ -1,15 +1,15 @@
-name: MlOps cI
+name: MlOps CI
 
 on:
   push:
-    branches:
-      - main
-    pull_request:
-      branches:
-        - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
   workflow:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,8 +19,14 @@ jobs:
         with:
           python-version: '3.12.3'
 
+      - name: Upgrade pip and build tools
+        run: |
+          python -m pip install --upgrade pip setuptools wheel cython
+
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Run tests
+        run: |
+          pytest --maxfail=1 --disable-warnings -q
