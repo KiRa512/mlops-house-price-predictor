@@ -1,42 +1,41 @@
 # ---------------------------------------------
 # 📊 DATA PROCESSING & ANALYSIS
 # ---------------------------------------------
-pandas==1.5.3          # Data manipulation and analysis — core for working with tabular data
-numpy==1.24.3          # Numerical operations, arrays, and matrix support (used by almost all ML libraries)
+pandas==2.2.2          # Compatible with Python 3.12
+numpy==1.26.4          # Latest stable with 3.12 wheels
 
 # ---------------------------------------------
 # 🧠 MACHINE LEARNING
 # ---------------------------------------------
-scikit-learn==1.2.2    # Classic ML models (regression, classification, clustering), preprocessing, model evaluation
-xgboost==1.7.5
+scikit-learn==1.5.2    # 1.2.2 fails on Py 3.12 → upgrade to 1.5.x (officially supports 3.12)
+xgboost==2.1.1         # 1.7.5 fails on Py 3.12 → upgrade to 2.x line for compatibility
+
 # ---------------------------------------------
 # 📈 VISUALIZATION
 # ---------------------------------------------
-matplotlib==3.7.1      # Base library for plotting graphs, charts, and visualizations
-seaborn==0.12.2        # High-level interface for drawing attractive and informative statistical graphics (built on matplotlib)
+matplotlib==3.9.2      # 3.9 line supports 3.12
+seaborn==0.13.2        # Compatible with matplotlib ≥ 3.9 and Python 3.12
 
 # ---------------------------------------------
 # 📦 EXPERIMENT TRACKING & MODEL MANAGEMENT
 # ---------------------------------------------
-mlflow==2.3.1          # End-to-end ML lifecycle tracking, including experiment tracking, model packaging, and deployment
+mlflow==2.14.1         # 2.3.1 incompatible with Py 3.12 → upgrade to ≥ 2.10
 
 # ---------------------------------------------
 # ✅ TESTING
 # ---------------------------------------------
-pytest==7.3.1          # Python testing framework — great for writing unit tests for ML pipelines, data validation, etc.
+pytest==8.3.3          # Works with Python 3.12
 
 # ---------------------------------------------
 # ⚡ API DEVELOPMENT (FOR MODEL SERVING)
 # ---------------------------------------------
-fastapi==0.95.2        # Lightweight, high-performance web framework for serving ML models via REST APIs
-uvicorn==0.22.0        # ASGI server for running FastAPI apps — lightweight and fast
-#
+fastapi==0.115.0       # Modern release for Python 3.12
+uvicorn==0.32.0        # Compatible ASGI server for latest FastAPI
+
 # ---------------------------------------------
 #  MISC
 # ---------------------------------------------
-pyyaml==6.0
-joblib==1.3.1
-setuptools==65.5.0
-ipykernel==6.29.5
-
-
+pyyaml==6.0.2          # Security-patched build for Py 3.12
+joblib==1.4.2          # Compatible with new scikit-learn
+setuptools==69.5.1     # Includes built-in distutils compatibility for 3.12
+ipykernel==6.29.5      # Jupyter kernel (already fine)
