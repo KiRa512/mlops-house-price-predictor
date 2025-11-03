@@ -144,7 +144,7 @@ def main(args):
             client.set_registered_model_tag(model_name, k, v)
 
         # Save model locally
-        save_path = f"{args.models_dir}/trained/{model_name}.pkl"
+        save_path = f"{args.models_dir}/{model_name}.pkl"
         joblib.dump(model, save_path)
         logger.info(f"Saved trained model to: {save_path}")
         logger.info(f"Final MAE: {mae:.2f}, R²: {r2:.4f}")

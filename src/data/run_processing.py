@@ -61,7 +61,7 @@ def clean_data(df):
     return df_cleaned
 
 def process_data(input_file, output_file):
-    """Full data processing pipeline."""
+    """Full data processing pi  peline."""
     # Create output directory if it doesn't exist
     output_path = Path(output_file).parent
     output_path.mkdir(parents=True, exist_ok=True)
