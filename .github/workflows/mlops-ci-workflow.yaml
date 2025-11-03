@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  workflow:
+  e2e_workflow:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,7 +23,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip setuptools wheel
           pip install -r requirements.txt
-          
+
       - name: Start MLflow Server
         run: |
           mlflow server \
@@ -53,6 +53,30 @@ jobs:
            --data data/processed/featured_house_data.csv \
            --models-dir models/trained \
            --mlflow-tracking-uri http://localhost:5000
+
+      - name: stop MLflow Server
+        run: |
+          pkill -f "mlflow server"
+          sleep 10
+
+      - name: Login to docker hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+      
+      - name: set docker buildx context
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile
+          tags: kirasama/fastapi:${{ github.sha }}
+          push: true
+
+
 
 
 
